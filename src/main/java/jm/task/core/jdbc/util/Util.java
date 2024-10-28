@@ -20,7 +20,7 @@ public class Util {
     private static final String URL = "jdbc:mysql://localhost:3306/mydbtest";
     private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String DB_URL_HIBERNATE = "jdbc:mysql://localhost:3306/mydbtest ? useSSL=false";
-    private static final String DB_DRIVER_HIBERNATE = "org.hibernate.dialect.MySQL5Dialect";
+    private static final String DB_DIALECT_HIBERNATE = "org.hibernate.dialect.MySQL5Dialect";
 
     public static Connection getConnection() {
         Connection connection = null;
@@ -52,7 +52,7 @@ public class Util {
         settings.put(Environment.URL, DB_URL_HIBERNATE);
         settings.put(Environment.USER, USERNAME);
         settings.put(Environment.PASS, PASSWORD);
-        settings.put(Environment.DIALECT, DB_DRIVER_HIBERNATE);
+        settings.put(Environment.DIALECT, DB_DIALECT_HIBERNATE);
         settings.put(Environment.HBM2DDL_AUTO, "");
         settings.put(Environment.SHOW_SQL, "true");
         settings.put(Environment.FORMAT_SQL, "true");
