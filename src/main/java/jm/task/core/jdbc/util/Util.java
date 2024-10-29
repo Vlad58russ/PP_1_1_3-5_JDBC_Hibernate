@@ -21,6 +21,7 @@ public class Util {
     private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String DB_URL_HIBERNATE = "jdbc:mysql://localhost:3306/mydbtest ? useSSL=false";
     private static final String DB_DIALECT_HIBERNATE = "org.hibernate.dialect.MySQL5Dialect";
+    private static SessionFactory sessionFactory;
 
     public static Connection getConnection() {
         Connection connection = null;
@@ -44,22 +45,6 @@ public class Util {
         }
     }
 
-    private static SessionFactory sessionFactory;
-
-    private static Properties getProperties() {
-        Properties settings = new Properties();
-        settings.put(Environment.DRIVER, DB_DRIVER);
-        settings.put(Environment.URL, DB_URL_HIBERNATE);
-        settings.put(Environment.USER, USERNAME);
-        settings.put(Environment.PASS, PASSWORD);
-        settings.put(Environment.DIALECT, DB_DIALECT_HIBERNATE);
-        settings.put(Environment.HBM2DDL_AUTO, "");
-        settings.put(Environment.SHOW_SQL, "true");
-        settings.put(Environment.FORMAT_SQL, "true");
-        settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-        return settings;
-    }
-
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
@@ -79,5 +64,19 @@ public class Util {
 
     public static Session openSession() {
         return sessionFactory.getCurrentSession();
+    }
+
+    private static Properties getProperties() {
+        Properties settings = new Properties();
+        settings.put(Environment.DRIVER, DB_DRIVER);
+        settings.put(Environment.URL, DB_URL_HIBERNATE);
+        settings.put(Environment.USER, USERNAME);
+        settings.put(Environment.PASS, PASSWORD);
+        settings.put(Environment.DIALECT, DB_DIALECT_HIBERNATE);
+        settings.put(Environment.HBM2DDL_AUTO, "");
+        settings.put(Environment.SHOW_SQL, "true");
+        settings.put(Environment.FORMAT_SQL, "true");
+        settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
+        return settings;
     }
 }
